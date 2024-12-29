@@ -57,5 +57,11 @@ class Person implements PersonImpl {
 }
 
 const person = new Person("John", 30); // 생성자 실행과 똑같음
+/**  
+    typescript는 컴파일 후 js파일을 실행해주어야됩니다. 
+    npm i -g typescript : tsc 명령어 사용하기 위해 설치해줘요.
+    tsc src/02-interfaces.ts : tsc 명령어로 타입스트립트 파일을 컴파일 해줘요.
+    node src/02-interface.js : 컴파일된 파일(js)을 실행
+**/
 
 console.log("Person", person);
