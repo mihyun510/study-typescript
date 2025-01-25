@@ -23,6 +23,7 @@ interface SumFunction {
 const sum: SumFunction = (a, b) => a + b;
 
 //클래스 구현체
+//클래스의 추상화 구현을 위해서 사
 interface PersonImpl {
   name: string;
   age: number;
@@ -65,3 +66,103 @@ const person = new Person("John", 30); // 생성자 실행과 똑같음
 **/
 
 console.log("Person", person);
+
+//사족보행 interface
+interface Legged {
+  walk(): void;
+  run(): void;
+}
+
+//interface Human extends Legged {}
+
+//interface Animal extends Legged {}
+
+//접근제한자 사용
+class Human implements Legged {
+  //this의 영역
+  /*
+    public, private, protected
+    아무것도 선언하지 않으면 기본적으로는 public
+    public: 객체를 생성했을 때 노출되는 영역
+  */
+  //legs: number;
+  //private name: string;
+
+  //constructor 에서 접근제한자를 바로 사용한 경우
+  //상위 초기화 영역에서 타입 선언 및 접근제한자 선언을 제외해도 된다.
+  constructor(
+    public legs: number,
+    private readonly name: string,
+    protected age: number
+  ) {
+    //this.legs = legs;
+    //constructor 에서 접근제한자를 바로 사용하면 제외해도 된다. 자동할당 되요...
+    //this.name = name;
+  }
+  //프로토타입의 영역
+  walk() {
+    console.log("walk");
+  }
+
+  run() {
+    console.log("run");
+  }
+
+  getInfo() {
+    return `${this.getName()}, ${this.age}`;
+  }
+
+  private getName() {
+    //private 은 자기자신 클래스에서만 접근가능.
+    return this.name;
+  }
+
+  getParentName() {
+    //private 은 자기자신 클래스에서만 접근가능.
+    return this.name;
+  }
+}
+
+//접근제한자
+//public, private, protected
+//public: 부모 클래스를 상속 받아도 접근 가능
+//private: 부모 클래스를 상속 받아도 접근 불가, 해당 클래스 내부에서만 접근 가능, 실제 객체에서는 접근 불가
+//protected: 부모 클래스를 상속 받아도 접근 가능, 실체 객체에서는 접근 불가
+class Male extends Human {
+  constructor(legs: number, name: string, age: number) {
+    //this.name (private)
+    //this.legs (public)
+    //상속받음
+    super(legs, name, age);
+  }
+
+  getLegsCount() {
+    return this.legs;
+  }
+  //   getName() {
+  //     //return this.name; private 자식 클래스에서 접근 불가
+  //     return this.getParentName();
+  //   }
+
+  getAge() {
+    //protected: 자식 클래스에서 접근 가능
+    return this.age;
+  }
+}
+
+const human = new Human(2, "Chris", 30);
+
+console.log(human);
+console.log(human.getInfo());
+console.log(human.legs); //public 외부 접근 가능
+//console.log(human.name); private  외부 접근 불가
+//console.log(human.age); protected 외부 접근 불가
+console.log(Object.getPrototypeOf(human));
+// class Animal implements Legged {
+//   walk() {
+//     console.log("walk");
+//   }
+//   run() {
+//     console.log("run");
+//   }
+// }

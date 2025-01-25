@@ -21,7 +21,9 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
 
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "isolatedModules": true,
+    "moduleDetection": "force"
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
