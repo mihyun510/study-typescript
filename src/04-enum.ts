@@ -32,3 +32,11 @@ function getHttpStatus(status: HttpStatus) {
 }
 
 console.log("Http OK", getHttpStatus(HttpStatus.OK));
+
+// 2025-01-12
+// interface를 통한 class의 추상화 구현
+// 클래스의 접근제한자(public, private, protected)에 대한 설명
+// 타입 선언과 인터섹션 타입, 유니온 타입에 대한 설명
+// 제네릭 타입의 기본적인 사용 방식 설명
+// enum 타입에 대한 설명
+// const enum과 enum의 차이점에 대한 설명
